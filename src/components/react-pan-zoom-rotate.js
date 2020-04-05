@@ -42,17 +42,17 @@ const ReactPanZoom = () => {
 
   const state = getInitialState();
 
-  componentWillReceiveProps = nextProps => {
-    const { matrixData } = state;
-    if (matrixData[0] !== nextProps.zoom) {
-      const newMatrixData = [...state.matrixData];
-      newMatrixData[0] = nextProps.zoom || newMatrixData[0];
-      newMatrixData[3] = nextProps.zoom || newMatrixData[3];
-      this.setState({
-        matrixData: newMatrixData
-      });
-    }
-  };
+  // componentWillReceiveProps = nextProps => {
+  //   const { matrixData } = state;
+  //   if (matrixData[0] !== nextProps.zoom) {
+  //     const newMatrixData = [...state.matrixData];
+  //     newMatrixData[0] = nextProps.zoom || newMatrixData[0];
+  //     newMatrixData[3] = nextProps.zoom || newMatrixData[3];
+  //     this.setState({
+  //       matrixData: newMatrixData
+  //     });
+  //   }
+  // };
 
   const reset = () => {
     const matrixData = [0.4, 0, 0, 0.4, 0, 0];
