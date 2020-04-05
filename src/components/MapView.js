@@ -31,9 +31,11 @@ const Img = styled.img`
   max-height: 256px;
   margin-bottom: -3px;
 `;
+
 const StyledReactPanZoom = styled(ReactPanZoom)`
   ${Container};
 `;
+
 export const MapView = ({ zoom }) => {
   console.log("MapView -> zoom", zoom);
   const [mapZoomState, setMapZoomState] = useState(zoom);
@@ -42,36 +44,31 @@ export const MapView = ({ zoom }) => {
       return imagePath.zoom === zoom;
     })
   );
+
   const [imageDetails, setImageDetails] = useState(
     imagesToLoad.length ? imagesToLoad[0].image : ""
   );
+
   const [dx, setDx] = useState(0);
   const [dy, setDy] = useState(0);
-  const [rotation] = useState(0);
 
   const onZoomChangeHandler = zoomValue => {
     console.log("onZoomChangeHandler zoomValue", zoomValue.toFixed(1));
     setMapZoomState(zoomValue.toFixed(1));
-    let comp = zoomValue.toFixed(1);
-    console.log("onZoomChangeHandler -> comp", comp);
-
+    zoomValue.toFixed(1);
     console.log("onZoomChangeHandler -> mapZoomState", mapZoomState);
-    console.log("onZoomChangeHandler -> data", data);
   };
 
   useEffect(() => {
-    console.log("in use Effect", mapZoomState);
-    console.log("useEffect -> data", data);
     let images = data.filter(imagePath => {
       return imagePath.zoom === mapZoomState;
     });
     console.log("MapView -> images", images);
     setImagesToLoad(images);
-    console.log("useEffect -> imagesToLoad", imagesToLoad);
 
     setImageDetails(images.length ? images[0].image : "");
     console.log("useEffect imageDetails", imageDetails);
-  }, [mapZoomState]);
+  }, []);
 
   const onPan = (dx, dy) => {
     setDx(dx);
@@ -85,18 +82,17 @@ export const MapView = ({ zoom }) => {
         onZoomChange={onZoomChangeHandler}
       ></Controls>
       <div className="image-map">
-        <StyledReactPanZoom>
-          zoom={zoom}
-          pandx={dx}
-          pandy={dy}
-          onPan={onPan}
-          rotation={rotation}
-          key={dx}
-          enablePan={true}>
-          {imageDetails
-            ? imageDetails.map(image => (
-                <div>
-                  {" "}
+        {imageDetails
+          ? imageDetails.map(image => (
+              <div>
+                <StyledReactPanZoom
+                  zoom={mapZoomState}
+                  pandx={dx}
+                  pandy={dy}
+                  onPan={onPan}
+                  key={dx}
+                  enablePan={true}
+                >
                   {image.length
                     ? image.map((img, index) => (
                         <Img
@@ -106,11 +102,11 @@ export const MapView = ({ zoom }) => {
                           key={index}
                         />
                       ))
-                    : ""}{" "}
-                </div>
-              ))
-            : ""}
-        </StyledReactPanZoom>
+                    : ""}
+                </StyledReactPanZoom>
+              </div>
+            ))
+          : ""}
       </div>
     </>
   );

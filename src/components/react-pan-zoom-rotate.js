@@ -110,7 +110,7 @@ export const ReactPanZoom = props => {
     setMatrixData(matrixData);
 
     if (panContainer) {
-      this.panCont.style.transform = `matrix(${matrixData.toString()})`;
+      panContainer.style.transform = `matrix(${matrixData.toString()})`;
     }
   };
 
