@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 const ControlsContainer = styled.div`
   position: absolute;
@@ -30,15 +30,28 @@ const ControlsContainer = styled.div`
   }
 `;
 
-export const Controls = ({ zoom }) => {
-  const [setZoom] = React.useState(0);
+export const Controls = ({ zoom, onZoomChange }) => {
+  const [zoomState, setZoom] = useState(zoom);
+  console.log("Controls load -> zoom", zoom);
+  console.log("Controls load -> zoomState", zoomState);
+
+  useEffect(() => {
+    console.log("in use Effect", zoomState);
+    onZoomChange(zoomState);
+  }, [zoomState]);
+
   const zoomIn = () => {
-    setZoom(zoom + 0.2);
+    console.log("in Zoom IN", zoom);
+    setZoom(zoomState - 0.2);
+    console.log("Controls -> ZoomIn zoomState", zoomState);
   };
 
   const zoomOut = () => {
+    console.log("in Zoom OUT", zoom);
     if (zoom >= 1) {
-      setZoom(zoom - 0.2);
+      console.log("inside if of zoomOut");
+      setZoom(zoomState + 0.2);
+      console.log("Controls -> ZoomOut zoomState", zoomState);
     }
   };
   return (
