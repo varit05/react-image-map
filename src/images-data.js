@@ -1,20 +1,20 @@
 export const data = [
   {
-    id: 4,
-    zoom: 2.6,
+    id: 1,
+    zoom: 1,
     image: [["./tiled/0/0/0.jpg"]]
   },
   {
-    id: 3,
-    zoom: 2.4,
+    id: 2,
+    zoom: 2,
     image: [
       ["./tiled/1/0/0.jpg", "./tiled/1/1/0.jpg"],
       ["./tiled/1/0/1.jpg", "./tiled/1/1/1.jpg"]
     ]
   },
   {
-    id: 2,
-    zoom: 2.2,
+    id: 3,
+    zoom: 3,
     image: [
       [
         "./tiled/2/0/0.jpg",
@@ -43,8 +43,8 @@ export const data = [
     ]
   },
   {
-    id: 1,
-    zoom: 2,
+    id: 4,
+    zoom: 4,
     image: [
       [
         "./tiled/3/0/0.jpg",

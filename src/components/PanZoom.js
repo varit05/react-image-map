@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const ReactPanZoom = props => {
+export const PanZoom = props => {
   let panWrapper;
   let panContainer;
   const { pandx, pandy, zoom } = props;
@@ -11,27 +11,13 @@ export const ReactPanZoom = props => {
     y: 0
   };
 
-  const defaultMatrixData = [zoom, 0, 0, zoom || 2.2, pandx || 0, pandy || 0];
-
-  console.log("rect-pan-zoom-rotate", props);
+  const defaultMatrixData = [zoom, 0, 0, zoom, pandx || 0, pandy || 0];
 
   const [comesFromDragging, setFromDragging] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [mouseDown, setMouseDown] = useState(false);
   const [dragData, setDragData] = useState(defaultDragData);
   const [matrixData, setMatrixData] = useState(defaultMatrixData);
-
-  // componentWillReceiveProps = nextProps => {
-  //   const { matrixData } = state;
-  //   if (matrixData[0] !== nextProps.zoom) {
-  //     const newMatrixData = [...matrixData];
-  //     newMatrixData[0] = nextProps.zoom || newMatrixData[0];
-  //     newMatrixData[3] = nextProps.zoom || newMatrixData[3];
-  //     this.setState({
-  //       matrixData: newMatrixData
-  //     });
-  //   }
-  // };
 
   const onClick = e => {
     if (comesFromDragging) {
@@ -44,7 +30,6 @@ export const ReactPanZoom = props => {
   };
 
   const onTouchStart = e => {
-    console.log("touches for onTouchStart ", e.touches[0]);
     const { pageX, pageY } = e.touches[0];
     panStart(pageX, pageY, e);
   };
@@ -124,7 +109,7 @@ export const ReactPanZoom = props => {
 
   return (
     <div
-      className={`pan-container ${props.className || ""}`}
+      className={`${props.className || ""}`}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
       onTouchStart={onTouchStart}

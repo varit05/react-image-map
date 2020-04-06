@@ -3,7 +3,7 @@ import "./App.css";
 import { MapView } from "./components/MapView";
 
 function App() {
-  let [zoom] = useState(2.2);
+  let [zoom] = useState(1);
 
   return (
     <div className="App">

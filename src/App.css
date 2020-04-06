@@ -11,5 +11,13 @@
 }
 
 .image-map {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-height: 900px;
+  width: 100vw;
+  max-width: 1440px;
   overflow: scroll;
 }
