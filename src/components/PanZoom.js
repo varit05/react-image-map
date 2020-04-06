@@ -19,6 +19,13 @@ export const PanZoom = props => {
   const [dragData, setDragData] = useState(defaultDragData);
   const [matrixData, setMatrixData] = useState(defaultMatrixData);
 
+  if (matrixData[0] !== props.zoom) {
+    const newMatrixData = [...matrixData];
+    newMatrixData[0] = props.zoom || newMatrixData[0];
+    newMatrixData[3] = props.zoom || newMatrixData[3];
+    setMatrixData(newMatrixData);
+  }
+
   const onClick = e => {
     if (comesFromDragging) {
       return;
